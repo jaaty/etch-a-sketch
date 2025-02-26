@@ -1,8 +1,9 @@
-const setupBoard = () => {
+const setupBoard = (numOfRows = 16) => {
     const container = document.querySelector(".container");
     const rows = [];
+    setNumOfRows(container);
 
-    for (let i = 0; i < 16; i++) {
+    for (let i = 0; i < numOfRows; i++) {
         const row = document.createElement("div");
         row.className = `row${i}`;
         row.style.display = `flex`;
@@ -14,7 +15,7 @@ const setupBoard = () => {
     }
 
     rows.forEach(row => {
-        for (let i = 0; i < 16; i++) {
+        for (let i = 0; i < numOfRows; i++) {
             const column = document.createElement("div");
             column.className = `column${i}`;
             column.style.border = `2px black`;
@@ -33,5 +34,16 @@ const setupBoard = () => {
         container.appendChild(row);
     });
 };
+
+const setNumOfRows = (container) => {
+    const button = document.createElement("button");
+    let numOfRows = 16;
+    button.addEventListener("click", () => {
+        const input = prompt("How many rows would you like the sketch pad to be?");
+        numOfRows = Number(input);
+        setupBoard(numOfRows);
+    })
+    container.appendChild(button);
+}
 
 setupBoard();
