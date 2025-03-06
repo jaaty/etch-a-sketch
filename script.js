@@ -35,12 +35,19 @@ const setupBoard = (numOfRows = 16) => {
     });
 };
 
+const clearBoard = () => {
+    const body = document.querySelector("body");
+    const container = document.querySelector(".container");
+    body.removeChild(container);
+};
+
 const setNumOfRows = (container) => {
     const button = document.createElement("button");
     let numOfRows = 16;
     button.addEventListener("click", () => {
         const input = prompt("How many rows would you like the sketch pad to be?");
         numOfRows = Number(input);
+        clearBoard();
         setupBoard(numOfRows);
     })
     container.appendChild(button);
