@@ -46,6 +46,9 @@ const clearBoard = () => {
 
 const setNumOfRows = (container) => {
     const button = document.createElement("button");
+    button.style.width = `80px`;
+    button.style.height = `30px`;
+    button.style.value = `reset board`;
     let numOfRows = 16;
     button.addEventListener("click", () => {
         const input = prompt("How many rows would you like the sketch pad to be?");
