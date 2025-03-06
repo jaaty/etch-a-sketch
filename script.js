@@ -39,6 +39,9 @@ const clearBoard = () => {
     const body = document.querySelector("body");
     const container = document.querySelector(".container");
     body.removeChild(container);
+    const div = document.createElement("div");
+    div.classList.add("container");
+    body.appendChild(div);
 };
 
 const setNumOfRows = (container) => {
