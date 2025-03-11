@@ -1,5 +1,12 @@
 const setupBoard = (numOfRows = 16) => {
     const container = document.querySelector(".container");
+    container.style.display = `flex`;
+    container.style.flexDirection = `column`;
+    container.style.justifyContent = `center`;
+    container.style.flex = `1 1 auto`;
+    container.style.maxHeight = `600px`;
+    container.style.maxWidth = `600px`;
+    container.style.aspectRatio = `1 / 1`;
     const rows = [];
     setNumOfRows(container);
 
@@ -11,6 +18,7 @@ const setupBoard = (numOfRows = 16) => {
         row.style.justifyContent = `center`;
         row.style.alignItems = `center`;
         row.style.flex = `1 1 auto`;
+        row.style.flexGrow = `1`;
         rows.push(row);
     }
 
@@ -18,14 +26,11 @@ const setupBoard = (numOfRows = 16) => {
         for (let i = 0; i < numOfRows; i++) {
             const column = document.createElement("div");
             column.className = `column${i}`;
-            column.style.border = `2px black`;
             column.style.justifyContent = `center`;
             column.style.alignItems = `center`;
-            column.style.maxHeight = `30px`;
-            column.style.maxWidth = `30px`;
-            column.style.minHeight = `30px`;
-            column.style.minWidth = `30px`;
             column.style.flex = `1 1 auto`;
+            column.style.flexGrow = `1`;
+            column.style.aspectRatio = `1 / 1`;
             column.addEventListener("mouseover", () => {
                 column.style.backgroundColor = `black`;
             });
@@ -41,20 +46,28 @@ const clearBoard = () => {
     body.removeChild(container);
     const div = document.createElement("div");
     div.classList.add("container");
+    div.style.display = `flex`;
+    div.style.flexDirection = `column`;
+    div.style.flex = `1 1 auto`;
+    div.style.maxWidth = `800px`;
+    div.style.aspectRatio = `1 / 1`;
     body.appendChild(div);
 };
 
 const setNumOfRows = (container) => {
     const button = document.createElement("button");
-    button.style.width = `80px`;
+    button.style.width = `100px`;
     button.style.height = `30px`;
-    button.style.value = `reset board`;
+    button.style.minHeight = `30px`;
+    button.innerText = `reset board`;
     let numOfRows = 16;
     button.addEventListener("click", () => {
         const input = prompt("How many rows would you like the sketch pad to be?");
         numOfRows = Number(input);
-        clearBoard();
-        setupBoard(numOfRows);
+        if (numOfRows <= 100 && numOfRows > 0) {
+            clearBoard();
+            setupBoard(numOfRows);
+        }
     })
     container.appendChild(button);
 }
